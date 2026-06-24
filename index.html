@@ -127,6 +127,16 @@
   .scripture__rule::before,.scripture__rule::after{
     content:""; height:1px; width:42px; background:var(--hairline);
   }
+  .scripture__cite{
+    display:block; margin-top:.85rem; font-size:.85rem; font-weight:600;
+    letter-spacing:.04em; color:var(--gold-deep); font-style:normal;
+    font-family:'Inter',sans-serif;
+  }
+  .lead-in{
+    text-align:center; color:var(--charcoal-soft); font-size:1.0625rem;
+    margin-top:1.4rem;
+  }
+  .lead-in--tight{ margin-top:.6rem; margin-bottom:0; }
 
   /* ================= BUTTONS ================= */
   .btn{
@@ -199,10 +209,15 @@
   }
   .hero-mark .mark{ width:30px; height:30px; color:var(--gold-deep); position:relative; }
 
-  .hero h1{ opacity:0; animation:fadeUp .9s var(--ease) .25s forwards; color:var(--charcoal); }
-  .hero .lede{ opacity:0; animation:fadeUp .9s var(--ease) .42s forwards; max-width:520px; margin-inline:auto; }
-  .hero .scripture{ opacity:0; animation:fadeUp .9s var(--ease) .6s forwards; }
-  .hero .btn-primary{ margin-top:2.4rem; opacity:0; animation:fadeUp .9s var(--ease) .8s forwards; }
+  .hero .scripture{ opacity:0; animation:fadeUp .9s var(--ease) .25s forwards; }
+  .hero h1{ margin-top:2.4rem; opacity:0; animation:fadeUp .9s var(--ease) .45s forwards; color:var(--charcoal); }
+  .hero__tagline{
+    margin-top:.65rem; font-family:'Fraunces',Georgia,serif; font-style:italic;
+    font-size:1.15rem; color:var(--gold-deep);
+    opacity:0; animation:fadeUp .9s var(--ease) .58s forwards;
+  }
+  .hero .lede{ opacity:0; animation:fadeUp .9s var(--ease) .72s forwards; max-width:520px; margin-inline:auto; }
+  .hero .btn-primary{ margin-top:2.4rem; opacity:0; animation:fadeUp .9s var(--ease) .9s forwards; }
 
   .hero__scrollcue{
     margin:3rem auto 0; width:22px; height:34px; border:1.5px solid var(--hairline);
@@ -236,11 +251,6 @@
     font-size:clamp(1.15rem, 3.8vw, 1.55rem); line-height:1.62; color:var(--charcoal);
     position:relative;
   }
-  .prayer-foot{
-    text-align:center; margin-top:1.8rem; color:var(--charcoal-soft); font-size:1.0625rem;
-  }
-  .prayer-foot strong{ color:var(--charcoal); font-weight:600; }
-
   /* ================= CONGRATS ================= */
   .congrats{
     background:linear-gradient(180deg, #fff, var(--warm-glow) 45%, #fff);
@@ -264,6 +274,10 @@
     background:radial-gradient(circle, rgba(212,175,55,0.35), transparent 70%);
   }
   .congrats-card__halo .mark{ width:34px; height:34px; color:var(--gold-deep); }
+  .congrats-card__sub{
+    display:block; font-size:1.05rem; font-weight:600; color:var(--gold-deep);
+    margin-top:.6rem;
+  }
   .congrats-card p{ color:var(--charcoal-soft); font-size:1.0625rem; max-width:480px; margin:0 auto; }
   .spark{
     position:absolute; width:5px; height:5px; border-radius:50%;
@@ -278,27 +292,26 @@
   /* ================= NEXT STEPS ================= */
   .steps-grid{
     display:grid; grid-template-columns:1fr; gap:1.1rem;
-    margin-top:2.6rem;
+    margin-top:2.2rem;
   }
   .step-card{
     background:var(--white);
     border:1px solid rgba(35,34,32,0.07);
     border-radius:var(--radius-md);
-    padding:1.9rem 1.6rem;
+    padding:1.8rem 1.5rem;
     text-align:center;
     box-shadow:var(--shadow-soft);
     transition:transform .4s var(--ease), box-shadow .4s var(--ease);
   }
   .step-card:hover{ transform:translateY(-4px); box-shadow:0 26px 46px -22px rgba(168,128,32,0.30); }
   .step-card__icon{
-    width:56px; height:56px; margin:0 auto 1.1rem; border-radius:50%;
+    width:52px; height:52px; margin:0 auto 1rem; border-radius:50%;
     background:linear-gradient(160deg,#FBF0D2,#fff);
     border:1px solid var(--hairline);
     display:flex; align-items:center; justify-content:center;
   }
-  .step-card__icon svg{ width:26px; height:26px; stroke:var(--gold-deep); fill:none; stroke-width:1.7; stroke-linecap:round; stroke-linejoin:round; }
-  .step-card h3{ font-size:1.05rem; font-weight:600; margin-bottom:.5rem; }
-  .step-card p{ font-size:.92rem; color:var(--charcoal-soft); line-height:1.55; }
+  .step-card__icon svg{ width:24px; height:24px; stroke:var(--gold-deep); fill:none; stroke-width:1.7; stroke-linecap:round; stroke-linejoin:round; }
+  .step-card p{ font-size:.97rem; color:var(--charcoal); line-height:1.55; font-weight:500; }
 
   /* ================= CONNECT ================= */
   .connect{
@@ -364,12 +377,15 @@
     .prayer-card{ padding:3.4rem 3rem 2.8rem; }
     .congrats-card{ padding:3.4rem 3rem 3rem; }
   }
+  @media (min-width:860px){
+    .steps-grid{ grid-template-columns:repeat(3,1fr); }
+  }
 
   /* ================= DESKTOP ================= */
   @media (min-width:1024px){
     .hero{ padding-top:8rem; padding-bottom:6.5rem; }
-    .steps-grid{ grid-template-columns:repeat(4,1fr); gap:1.6rem; }
-    .step-card{ padding:2.2rem 1.5rem; }
+    .steps-grid{ grid-template-columns:repeat(5,1fr); gap:1.2rem; }
+    .step-card{ padding:2rem 1.3rem; }
     .btn-whatsapp{ width:auto; }
   }
 </style>
@@ -398,14 +414,16 @@
         <svg class="mark"><use href="#cross-mark"/></svg>
       </div>
 
-      <h1 class="display">Welcome Beloved</h1>
-
-      <p class="lede">The Lord Jesus is coming soon. Today is your opportunity to receive eternal life and become part of God's family.</p>
-
       <div class="scripture">
         <span class="scripture__ref">Romans 10:10</span>
         <blockquote>&ldquo;For with the heart man believeth unto righteousness; and with the mouth confession is made unto salvation.&rdquo;</blockquote>
+        <cite class="scripture__cite">— Romans 10:10</cite>
       </div>
+
+      <h1 class="display">Welcome, Beloved</h1>
+      <p class="hero__tagline">You're in the right place.</p>
+
+      <p class="lede">The Lord Jesus is coming back soon, and it is important that we are ready for His return. Without wasting any time, I would like to lead you into salvation right now.</p>
 
       <div>
         <a class="btn btn-primary" href="#prayer">Receive Salvation</a>
@@ -420,12 +438,11 @@
     <div class="container measure">
       <p class="eyebrow"><svg class="mark"><use href="#cross-mark"/></svg>Pray With Us</p>
       <h2 id="prayer-heading" class="display">The Prayer of Salvation</h2>
+      <p class="lead-in">If you believe in your heart, say these words sincerely:</p>
 
       <div class="prayer-card">
         <blockquote>Lord Jesus, I believe with my heart that You were raised from the dead so that I can have eternal life. I confess with my mouth that You are Lord. Come into my heart. Come into my world. Hallelujah! I am saved!</blockquote>
       </div>
-
-      <p class="prayer-foot">If you sincerely prayed this prayer and believed in your heart, <strong>congratulations.</strong></p>
     </div>
   </section>
 
@@ -442,8 +459,9 @@
           <svg class="mark"><use href="#cross-mark"/></svg>
         </div>
 
-        <h2 id="congrats-heading" class="display">Congratulations!<br>You're Saved</h2>
-        <p style="margin-top:1.1rem;">There is rejoicing in Heaven over every soul that comes to Christ. Welcome to the family of God.</p>
+        <h2 id="congrats-heading" class="display">Congratulations!</h2>
+        <span class="congrats-card__sub">You are now saved.</span>
+        <p style="margin-top:1.1rem;">The Bible tells us that there is rejoicing in Heaven over every soul that comes to Christ. Welcome to the family of God.</p>
       </div>
     </div>
   </section>
@@ -452,49 +470,55 @@
   <section id="next-steps" class="section reveal" aria-labelledby="next-heading">
     <div class="container">
       <div class="measure" style="text-align:center;">
-        <p class="eyebrow"><svg class="mark"><use href="#cross-mark"/></svg>Grow In Faith</p>
-        <h2 id="next-heading" class="display">Your Next Steps</h2>
-        <p class="lede">Salvation is the beginning of a beautiful journey with God. Stay rooted and continue growing spiritually.</p>
+        <p class="eyebrow"><svg class="mark"><use href="#cross-mark"/></svg>Stay Strong</p>
+        <h2 id="next-heading" class="display">What Next?</h2>
+        <p class="lede">One important thing you must know is that the devil is not happy about your salvation. The Bible describes him as a roaring lion, seeking whom he may devour. His desire is to steal, kill, destroy, and pull people away from God.</p>
+        <p class="lede" style="margin-top:.85rem;">That is why it is important to remain in God's presence.</p>
       </div>
+
+      <div class="scripture" style="margin-top:2.4rem;">
+        <span class="scripture__ref">As it is written:</span>
+        <blockquote>&ldquo;He that dwelleth in the secret place of the Most High shall abide under the shadow of the Almighty.&rdquo;</blockquote>
+        <cite class="scripture__cite">— Psalm 91:1</cite>
+      </div>
+
+      <p class="lead-in" style="margin-top:2.6rem; font-weight:600; color:var(--charcoal);">You can remain strong in your faith by:</p>
 
       <div class="steps-grid reveal-stagger">
         <article class="step-card">
           <div class="step-card__icon" aria-hidden="true">
             <svg viewBox="0 0 32 32"><path d="M4 6c4-2 9-2 12 0v22c-3-2-8-2-12 0V6z"/><path d="M28 6c-4-2-9-2-12 0v22c3-2 8-2 12 0V6z"/></svg>
           </div>
-          <h3>Read God's Word Daily</h3>
-          <p>Let Scripture renew your mind and strengthen your faith, one verse at a time.</p>
+          <p>Reading and studying God's Word daily.</p>
         </article>
 
         <article class="step-card">
           <div class="step-card__icon" aria-hidden="true">
             <svg viewBox="0 0 32 32"><line x1="16" y1="13" x2="16" y2="27"/><path d="M16 13c-2.2-2.8-2.2-6.4 0-9.2 2.2 2.8 2.2 6.4 0 9.2z" fill="currentColor" stroke="none"/></svg>
           </div>
-          <h3>Pray Consistently</h3>
-          <p>Speak to God freely and often. Prayer keeps your heart close to His.</p>
+          <p>Spending time in prayer.</p>
         </article>
 
         <article class="step-card">
           <div class="step-card__icon" aria-hidden="true">
             <svg viewBox="0 0 32 32"><circle cx="12.5" cy="16" r="8"/><circle cx="19.5" cy="16" r="8"/></svg>
           </div>
-          <h3>Fellowship with Believers</h3>
-          <p>Walk alongside others who will encourage and support your faith.</p>
+          <p>Fellowshipping regularly with other believers.</p>
         </article>
 
         <article class="step-card">
           <div class="step-card__icon" aria-hidden="true">
             <svg viewBox="0 0 32 32"><polyline points="6,18 16,8 26,18"/><line x1="16" y1="8" x2="16" y2="3"/><line x1="13" y1="4.5" x2="19" y2="4.5"/><rect x="8" y="18" width="16" height="10"/><rect x="14" y="22" width="4" height="6"/></svg>
           </div>
-          <h3>Attend Church Regularly</h3>
-          <p>Gather with God's people to worship, learn, and grow together.</p>
+          <p>Attending church consistently.</p>
         </article>
-      </div>
 
-      <div class="scripture" style="margin-top:3.4rem;">
-        <span class="scripture__ref">Psalm 91:1</span>
-        <blockquote>&ldquo;He that dwelleth in the secret place of the Most High shall abide under the shadow of the Almighty.&rdquo;</blockquote>
-        <div class="scripture__rule" aria-hidden="true"><svg class="mark"><use href="#cross-mark"/></svg></div>
+        <article class="step-card">
+          <div class="step-card__icon" aria-hidden="true">
+            <svg viewBox="0 0 32 32"><circle cx="9" cy="9" r="2.6"/><circle cx="23" cy="9" r="2.6"/><circle cx="16" cy="24" r="2.6"/><line x1="11.2" y1="10.3" x2="14" y2="22"/><line x1="20.8" y1="10.3" x2="18" y2="22"/><line x1="11.4" y1="9" x2="20.6" y2="9"/></svg>
+          </div>
+          <p>Staying connected to people who will help you grow spiritually.</p>
+        </article>
       </div>
     </div>
   </section>
@@ -503,24 +527,24 @@
   <section id="connect" class="section connect reveal" aria-labelledby="connect-heading">
     <div class="container measure">
       <p class="eyebrow"><svg class="mark"><use href="#cross-mark"/></svg>Stay Connected</p>
-      <h2 id="connect-heading" class="display">Join the Soul Winners Community</h2>
-      <p class="lede">We would love to welcome you, encourage you, and help you grow in your walk with Christ.</p>
+      <h2 id="connect-heading" class="display">We'd Love to Welcome You</h2>
+      <p class="lede">We would be honored to meet you, welcome you into God's family here on earth, and help you grow in your walk with Christ.</p>
+      <p class="lede" style="margin-top:.85rem;">Before then, you can join our Soul Winners WhatsApp Community, where you'll receive encouragement, guidance, and information about our upcoming fellowship services.</p>
 
-      <a class="btn btn-whatsapp" href="https://chat.whatsapp.com/FIYGwrHy9Tl5hl33sT73V1?s=cl&amp;p=a&amp;mlu=3" target="_blank" rel="noopener noreferrer" aria-label="Join Soul Winners on WhatsApp (opens in a new tab)">
+      <a class="btn btn-whatsapp" href="https://chat.whatsapp.com/FIYGwrHy9Tl5hl33sT73V1?s=cl&amp;p=a&amp;mlu=3" target="_blank" rel="noopener noreferrer" aria-label="Join Our WhatsApp Community (opens in a new tab)">
         <span class="btn-whatsapp__icon" aria-hidden="true">
           <svg viewBox="0 0 32 32"><path d="M16 4a12 12 0 0 0-10.3 18.1L4.3 28l6.1-1.6A12 12 0 1 0 16 4z" fill="#fff"/><path d="M11.4 11.6c.3-.9.9-.9 1.5-.3l1 1c.3.3.3.8.1 1.1l-.5.8c-.2.3-.1.6.1.9.6.9 1.6 1.8 2.5 2.4.3.2.6.3.9.1l.8-.5c.3-.2.8-.2 1.1.1l1 1c.6.6.6 1.2-.3 1.5-1.5.5-3.5-.2-5.3-2-1.8-1.8-2.5-3.8-2-5.3z" fill="#268a3f"/></svg>
         </span>
-        Join Soul Winners on WhatsApp
+        Join Our WhatsApp Community
       </a>
-      <p class="connect__note">Tap to open WhatsApp and request to join the group.</p>
     </div>
   </section>
 
   <!-- ============ FINAL INVITATION ============ -->
   <section id="final" class="section final reveal" aria-labelledby="final-heading">
     <div class="container">
-      <h2 id="final-heading" class="display">We Look Forward To Seeing You This Sunday</h2>
-      <p class="lede">Further information will be shared with you through our WhatsApp community. Welcome to the family of God.</p>
+      <h2 id="final-heading" class="display">We look forward to seeing you this Sunday.</h2>
+      <p class="lede">Welcome to the family of God.</p>
     </div>
   </section>
 
